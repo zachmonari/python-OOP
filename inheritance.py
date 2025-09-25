@@ -8,13 +8,17 @@ class Animal:
         print("This Animal sleeps")
 # Child classes
 class Dog(Animal):
-    pass
+    def bark(self):
+        print("This Dog barks")
 class Cat(Animal):
-    pass
+    def run(self):
+        print("This Cat runs")
 class Bird(Animal):
-    pass
+    def fly(self):
+        print("This Bird flies")
 class Lion(Animal):
-    pass
+    def roar(self):
+        print("This Lion roars")
 # Objects
 dog=Dog()
 cat=Cat()
@@ -25,3 +29,8 @@ print(dog.alive)
 cat.eat()
 bird.sleep()
 print(lion.alive)
+
+dog.bark()
+cat.run()
+bird.fly()
+lion.roar()
