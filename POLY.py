@@ -31,7 +31,11 @@ class Rectangle(Shapes):
     def area(self):
         return  self.width * self.height
 
+class Pizza(Circle):
+    def __init__(self, topping,radius):
+        super().__init__(radius)
+        self.type = type
 
-shapes=[Circle(7),Triangle(8,6),Rectangle(10,20)]
+shapes=[Circle(7),Triangle(8,6),Rectangle(10,20),Pizza("pepperoni",20)]
 for shape in shapes:
-    print(f"{shape.area()}cm^2")
+    print(f"{shape.area()} cm^2")
