@@ -2,7 +2,7 @@
 import math
 from abc import ABC, abstractmethod
 
-class Shapes:
+class Shapes(ABC):
     @abstractmethod
     def area(self):
         pass
@@ -33,3 +33,5 @@ class Rectangle(Shapes):
 
 
 shapes=[Circle(7),Triangle(8,6),Rectangle(10,20)]
+for shape in shapes:
+    print(f"{shape.area()}cm^2")
