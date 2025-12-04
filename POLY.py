@@ -1,4 +1,4 @@
-class Shapes():
+class Shapes:
     pass
 
 class Circle(Shapes):
@@ -7,3 +7,5 @@ class Triangle(Shapes):
     pass
 class Rectangle(Shapes):
     pass
+
+shapes=[Circle(),Triangle(),Rectangle()]
