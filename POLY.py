@@ -61,3 +61,7 @@ class Cat(Animal):
 class Bird(Animal):
     def fly(self):
         print("This Bird flies")
+
+class Lion(Animal):
+    def roar(self):
+        print("This Lion roars")
