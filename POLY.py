@@ -72,3 +72,8 @@ dog=Dog()
 cat=Cat()
 bird=Bird()
 lion = Lion()
+
+print(dog.alive)
+cat.eat()
+bird.sleep()
+print(lion.alive)
