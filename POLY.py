@@ -49,3 +49,15 @@ class Animal:
 
     def sleep(self):
         print("This Animal sleeps")
+
+
+# Child classes
+class Dog(Animal):
+    def bark(self):
+        print("This Dog barks")
+class Cat(Animal):
+    def run(self):
+        print("This Cat runs")
+class Bird(Animal):
+    def fly(self):
+        print("This Bird flies")
