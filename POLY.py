@@ -77,3 +77,8 @@ print(dog.alive)
 cat.eat()
 bird.sleep()
 print(lion.alive)
+
+dog.bark()
+cat.run()
+bird.fly()
+lion.roar()
