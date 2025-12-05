@@ -65,3 +65,10 @@ class Bird(Animal):
 class Lion(Animal):
     def roar(self):
         print("This Lion roars")
+
+
+# Objects
+dog=Dog()
+cat=Cat()
+bird=Bird()
+lion = Lion()
