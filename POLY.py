@@ -39,3 +39,13 @@ class Pizza(Circle):
 shapes=[Circle(7),Triangle(8,6),Rectangle(10,20),Pizza("pepperoni",20)]
 for shape in shapes:
     print(f"{shape.area()} cm^2")
+
+
+# parent class
+class Animal:
+    alive = True
+    def eat(self):
+        print("This Animal eats")
+
+    def sleep(self):
+        print("This Animal sleeps")
