@@ -9,3 +9,9 @@ class Mpesa(Payment):
 class Card(Payment):
     def pay(self, amount):
         return f"Paid {amount} using Credit Card."
+
+def checkout(payment_method: Payment):
+    print(payment_method.pay(500))
+
+checkout(Mpesa())
+checkout(Card())
