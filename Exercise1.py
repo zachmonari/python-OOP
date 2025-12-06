@@ -4,3 +4,7 @@ class Book:
 class EBook(Book):
     def borrow(self):
         return "Downloading the eBook."
+
+class AudioBook(Book):
+    def borrow(self):
+        return "Streaming the audiobook."
