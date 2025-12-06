@@ -11,7 +11,7 @@ class Card(Payment):
         return f"Paid {amount} using Credit Card."
 
 def checkout(payment_method: Payment):
-    print(payment_method.pay(500))
+    print(payment_method.pay(5000))
 
 checkout(Mpesa())
 checkout(Card())
