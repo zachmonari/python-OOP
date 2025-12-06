@@ -10,3 +10,6 @@ class AudioBook(Book):
         return "Streaming the audiobook."
 def process_borrow(item: Book):
     print(item.borrow())
+
+process_borrow(EBook())
+process_borrow(AudioBook())
