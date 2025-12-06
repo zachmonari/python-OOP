@@ -4,11 +4,11 @@ class Payment:
 
 class Mpesa(Payment):
     def pay(self, amount):
-        return f"Paid {amount} via M-Pesa."
+        return f"Paid Ksh. {amount} via M-Pesa."
 
 class Card(Payment):
     def pay(self, amount):
-        return f"Paid {amount} using Credit Card."
+        return f"Paid Ksh. {amount} using Credit Card."
 
 def checkout(payment_method: Payment):
     print(payment_method.pay(5000))
