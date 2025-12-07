@@ -5,3 +5,7 @@ class PaymentMethod(ABC):
     def pay(self, amount):
         pass
 
+class Mpesa(PaymentMethod):
+    def pay(self, amount):
+        return f"Payment of KES {amount} completed via M-Pesa."
+
