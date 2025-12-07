@@ -20,3 +20,6 @@ elif choice == "3":
     method = PayPal()
 else:
     print("Invalid option!")
+    exit()
+
+    checkout(method, amount)
