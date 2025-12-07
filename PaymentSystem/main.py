@@ -8,8 +8,11 @@ print("Choose payment method:")
 print("1. M-Pesa")
 print("2. Card")
 print("3. PayPal")
+print("4. Exit")
 
-choice = input("Enter choice: ")
+choice = input("Enter choice(Option 4 to exit): ")
+if choice == "4":
+    exit()
 amount = float(input("Enter amount: "))
 
 if choice == "1":
@@ -22,4 +25,4 @@ else:
     print("Invalid option!")
     exit()
 
-    checkout(method, amount)
+checkout(method, amount)
