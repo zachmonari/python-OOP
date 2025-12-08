@@ -25,4 +25,4 @@ else:
     print("Invalid option!")
     exit()
 
-checkout(method, amount)
+checkout(method, amount,currency="KES")
