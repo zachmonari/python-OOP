@@ -1,4 +1,5 @@
 from payment_methods import Mpesa, Card, PayPal
+from receipt_generator import generate_receipt
 
 def checkout(payment_method, amount):
     try:
