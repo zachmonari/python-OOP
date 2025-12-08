@@ -4,7 +4,7 @@ from utils import validate_amount, SUPPORTED_CURRENCIES
 from checkout import checkout
 from PIL import Image
 logo=Image.open("ZachTechs.jpg")
-st.image(logo,width=200)
+st.image(logo,width=150)
 
 st.set_page_config(page_title="Mini Payment System", page_icon="💳")
 
