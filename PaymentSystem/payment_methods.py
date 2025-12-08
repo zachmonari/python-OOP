@@ -2,18 +2,18 @@ from abc import ABC, abstractmethod
 
 class PaymentMethod(ABC):
     @abstractmethod
-    def pay(self, amount):
+    def pay(self, amount,currency):
         pass
 
 class Mpesa(PaymentMethod):
-    def pay(self, amount):
-        return f"Payment of KES {amount} completed via M-Pesa."
+    def pay(self, amount,currency):
+        return f"Payment of KES {currency}{amount} completed via M-Pesa."
 
 class Card(PaymentMethod):
-    def pay(self, amount):
-        return f"Payment of KES {amount} completed using Credit/Debit Card."
+    def pay(self, amount,currency):
+        return f"Payment of KES {currency}{amount} completed using Credit/Debit Card."
 
 
 class PayPal(PaymentMethod):
-    def pay(self, amount):
-        return f"Payment of KES {amount} completed via PayPal."
+    def pay(self, amount,currency):
+        return f"Payment of KES {currency}{amount} completed via PayPal."
