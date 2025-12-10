@@ -2,6 +2,12 @@ import streamlit as st
 import pandas as pd
 from admin_utils import load_transactions
 from admin_auth import admin_login
+from queries import fetch_transactions
+from PIL import Image
+
+
+logo=Image.open("ZachTechs.jpg")
+st.image(logo, width=150)
 
 st.set_page_config(page_title="Admin Dashboard", page_icon="🛡️", layout="wide")
 
@@ -60,7 +66,7 @@ if search:
     ]
 
 # Display table
-st.dataframe(filtered_df, use_container_width=True)
+st.dataframe(filtered_df, width="stretch")
 
 # CSV Download
 csv = filtered_df.to_csv(index=False).encode()
@@ -81,3 +87,5 @@ if st.button("Open Receipt PDF"):
             file_name=receipt_path,
             mime="application/pdf"
         )
+df = fetch_transactions()
+st.dataframe(df)
