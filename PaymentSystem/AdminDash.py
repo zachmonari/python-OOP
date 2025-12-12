@@ -199,3 +199,54 @@ with colB:
 st.subheader("Currency Breakdown")
 currency_breakdown = filtered.groupby("Currency")["Amount"].sum()
 st.write(currency_breakdown)
+
+# ------------------------
+# Transaction Table + Download
+# ------------------------
+st.header("📄 Transactions")
+
+# Allow admin only actions
+is_admin = st.session_state.role == "admin"
+
+st.dataframe(filtered.sort_values(by="Time", ascending=False), width="stretch")
+
+# CSV export
+csv_buffer = io.StringIO()
+filtered.to_csv(csv_buffer, index=False)
+csv_bytes = csv_buffer.getvalue().encode()
+
+st.download_button("📥 Download CSV", data=csv_bytes, file_name=f"transactions_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv", mime="text/csv")
+
+# ------------------------
+# Receipt download / view
+# ------------------------
+st.header("📎 Receipts")
+selected_id = st.selectbox("Select Transaction ID to view receipt", options=filtered["ID"].tolist())
+rec_row = df[df["ID"] == selected_id]
+if not rec_row.empty:
+    receipt_path = rec_row.iloc[0]["Receipt"]
+    try:
+        with open(receipt_path, "rb") as f:
+            receipt_bytes = f.read()
+        st.download_button("Download Receipt PDF", data=receipt_bytes, file_name=receipt_path.split('/')[-1], mime="application/pdf")
+    except FileNotFoundError:
+        st.error("Receipt file not found on disk: " + str(receipt_path))
+else:
+    st.info("Selected transaction not found in current dataset")
+
+# ------------------------
+# Admin-only controls
+# ------------------------
+if is_admin:
+    st.header("⚙️ Admin Controls")
+    col1, col2 = st.columns(2)
+    with col1:
+        if st.button("Delete All Transactions (danger)"):
+            st.warning("Delete functionality is not implemented in UI for safety. Please run a backend script to remove records.")
+    with col2:
+        if st.button("Refresh Data"):
+            st.cache_data.clear()
+            st.rerun()
+
+st.markdown("---")
+st.caption("Built with ❤️ by ZachTechs")
