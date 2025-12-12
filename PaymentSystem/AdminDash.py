@@ -45,3 +45,11 @@ def apply_theme():
         st.markdown(LIGHT_CSS, unsafe_allow_html=True)
 
 apply_theme()
+
+# ------------------------
+# Authentication / Roles
+# ------------------------
+if "logged_in" not in st.session_state:
+    st.session_state.logged_in = False
+    st.session_state.username = None
+    st.session_state.role = None
