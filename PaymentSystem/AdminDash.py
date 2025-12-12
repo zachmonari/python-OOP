@@ -82,3 +82,23 @@ if not st.session_state.logged_in:
     st.sidebar.markdown("\n---\nDefault credentials: admin/admin123 or viewer/viewer123")
     st.stop()
 
+# ------------------------
+# Top bar
+# ------------------------
+col1, col2, col3 = st.columns([1, 6, 1])
+with col1:
+    st.image("https://static.streamlit.io/images/brand/streamlit-mark-color.png", width=60)
+with col2:
+    st.markdown(f"# Admin Dashboard")
+    st.markdown(f"**User:** {st.session_state.username}  •  **Role:** {st.session_state.role}")
+with col3:
+    if st.button("Logout"):
+        logout()
+
+# Theme toggle
+with st.sidebar:
+    st.markdown("---")
+    theme_choice = st.radio("Theme", ("light", "dark"), index=0 if st.session_state.theme == "light" else 1)
+    if theme_choice != st.session_state.theme:
+        st.session_state.theme = theme_choice
+        apply_theme()
