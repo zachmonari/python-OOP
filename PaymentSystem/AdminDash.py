@@ -55,6 +55,7 @@ if "logged_in" not in st.session_state:
     st.session_state.role = None
 
 def login_box():
+    st.sidebar.image("ZachTechs.jpg", width=100)
     st.sidebar.header("🔐 Login")
     username = st.sidebar.text_input("Username")
     password = st.sidebar.text_input("Password", type="password")
@@ -87,7 +88,7 @@ if not st.session_state.logged_in:
 # ------------------------
 col1, col2, col3 = st.columns([1, 6, 1])
 with col1:
-    st.image("https://static.streamlit.io/images/brand/streamlit-mark-color.png", width=60)
+    st.image("ZachTechs.jpg", width=100)
 with col2:
     st.markdown(f"# Admin Dashboard")
     st.markdown(f"**User:** {st.session_state.username}  •  **Role:** {st.session_state.role}")
@@ -97,6 +98,7 @@ with col3:
 
 # Theme toggle
 with st.sidebar:
+    st.sidebar.image("ZachTechs.jpg", width=100)
     st.markdown("---")
     theme_choice = st.radio("Theme", ("light", "dark"), index=0 if st.session_state.theme == "light" else 1)
     if theme_choice != st.session_state.theme:
@@ -163,7 +165,7 @@ if statuses is not None:
 if search:
     mask = filtered["Method"].str.contains(search, case=False, na=False) | filtered["ID"].astype(str).str.contains(search)
     filtered = filtered[mask]
-
+st.sidebar.caption("@ZachTechs, 2025")
 # ------------------------
 # Summary Metrics
 # ------------------------
