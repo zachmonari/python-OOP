@@ -125,3 +125,42 @@ except Exception as e:
 if df.empty:
     st.warning("No transactions found yet. Make a payment from the user app first.")
     st.stop()
+
+# ------------------------
+# Sidebar Filters
+# ------------------------
+st.sidebar.header("📌 Filters")
+
+# Date range
+min_date = df["Time"].min().date()
+max_date = df["Time"].max().date()
+start_date = st.sidebar.date_input("Start date", min_value=min_date, value=min_date)
+end_date = st.sidebar.date_input("End date", min_value=min_date, value=max_date)
+
+# Methods & currencies
+methods = st.sidebar.multiselect("Payment Method", options=sorted(df["Method"].unique()), default=sorted(df["Method"].unique()))
+currencies = st.sidebar.multiselect("Currency", options=sorted(df["Currency"].unique()), default=sorted(df["Currency"].unique()))
+
+# Status filter (if present)
+if "Status" in df.columns:
+    statuses = st.sidebar.multiselect("Status", options=sorted(df["Status"].unique()), default=sorted(df["Status"].unique()))
+else:
+    statuses = None
+
+# Quick search
+search = st.sidebar.text_input("Search (ID, Method)")
+
+# Apply filters
+filtered = df[
+    (df["Time"].dt.date >= start_date) &
+    (df["Time"].dt.date <= end_date) &
+    (df["Method"].isin(methods)) &
+    (df["Currency"].isin(currencies))
+]
+if statuses is not None:
+    filtered = filtered[filtered["Status"].isin(statuses)]
+
+if search:
+    mask = filtered["Method"].str.contains(search, case=False, na=False) | filtered["ID"].astype(str).str.contains(search)
+    filtered = filtered[mask]
+
