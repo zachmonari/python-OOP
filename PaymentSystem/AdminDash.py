@@ -164,3 +164,38 @@ if search:
     mask = filtered["Method"].str.contains(search, case=False, na=False) | filtered["ID"].astype(str).str.contains(search)
     filtered = filtered[mask]
 
+# ------------------------
+# Summary Metrics
+# ------------------------
+st.header("📊 Summary")
+col1, col2, col3, col4 = st.columns(4)
+
+with col1:
+    st.metric("Total Transactions", len(filtered))
+with col2:
+    st.metric("Total Revenue", f"{filtered['Amount'].sum():,.2f} {filtered['Currency'].mode()[0]}")
+with col3:
+    st.metric("Unique Payment Methods", filtered["Method"].nunique())
+with col4:
+    st.metric("Currencies", filtered["Currency"].nunique())
+
+# ------------------------
+# Charts
+# ------------------------
+st.header("📈 Visualizations")
+
+# Revenue over time (daily)
+revenue_ts = filtered.set_index("Time").resample('D')["Amount"].sum().reset_index()
+colA, colB = st.columns([3,2])
+with colA:
+    st.subheader("Revenue (Daily)")
+    st.line_chart(revenue_ts.rename(columns={"Time": "index"}).set_index("index")["Amount"])
+
+with colB:
+    st.subheader("By Payment Method")
+    method_counts = filtered.groupby("Method")["Amount"].sum().sort_values(ascending=False)
+    st.bar_chart(method_counts)
+
+st.subheader("Currency Breakdown")
+currency_breakdown = filtered.groupby("Currency")["Amount"].sum()
+st.write(currency_breakdown)
