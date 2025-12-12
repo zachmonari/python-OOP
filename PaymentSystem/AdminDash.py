@@ -53,3 +53,18 @@ if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
     st.session_state.username = None
     st.session_state.role = None
+
+def login_box():
+    st.sidebar.header("🔐 Login")
+    username = st.sidebar.text_input("Username")
+    password = st.sidebar.text_input("Password", type="password")
+
+    if st.sidebar.button("Login"):
+        user = USERS.get(username)
+        if user and user["password"] == password:
+            st.session_state.logged_in = True
+            st.session_state.username = username
+            st.session_state.role = user["role"]
+            st.sidebar.success(f"Logged in as {username} ({st.session_state.role})")
+        else:
+            st.sidebar.error("Invalid credentials")
