@@ -102,3 +102,26 @@ with st.sidebar:
     if theme_choice != st.session_state.theme:
         st.session_state.theme = theme_choice
         apply_theme()
+
+# ------------------------
+# Load & Prepare Data
+# ------------------------
+@st.cache_data(ttl=30)
+def load_data():
+    df = fetch_transactions()
+    if df.empty:
+        return df
+    # ensure Timestamp is datetime
+    if not pd.api.types.is_datetime64_any_dtype(df["Time"]):
+        df["Time"] = pd.to_datetime(df["Time"])
+    return df
+
+try:
+    df = load_data()
+except Exception as e:
+    st.error("Error loading transactions: " + str(e))
+    st.stop()
+
+if df.empty:
+    st.warning("No transactions found yet. Make a payment from the user app first.")
+    st.stop()
