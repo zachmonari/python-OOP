@@ -14,3 +14,13 @@ USERS = {
     "admin": {"password": "admin123", "role": "admin"},
     "viewer": {"password": "viewer123", "role": "viewer"}
 }
+# ------------------------
+# Theme CSS (Light / Dark)
+# ------------------------
+LIGHT_CSS = """
+<style>
+    .reportview-container { background: #FFFFFF; }
+    .stApp { background: #FFFFFF; color: #000000 }
+    .card { background: #F8F9FA; padding: 12px; border-radius: 8px; }
+</style>
+"""
