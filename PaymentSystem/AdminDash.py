@@ -68,3 +68,17 @@ def login_box():
             st.sidebar.success(f"Logged in as {username} ({st.session_state.role})")
         else:
             st.sidebar.error("Invalid credentials")
+
+def logout():
+    st.session_state.logged_in = False
+    st.session_state.username = None
+    st.session_state.role = None
+    st.rerun()
+
+# Show login if not logged in
+if not st.session_state.logged_in:
+    st.title("🛡️ Admin Dashboard — Please log in")
+    login_box()
+    st.sidebar.markdown("\n---\nDefault credentials: admin/admin123 or viewer/viewer123")
+    st.stop()
+
