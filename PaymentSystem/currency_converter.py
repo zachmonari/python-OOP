@@ -11,3 +11,9 @@ _cache = {
     "timestamp": 0
 }
 CACHE_TTL = 3600  # seconds (1 hour)
+def get_rates(base_currency: str = "USD"):
+    """
+    Fetch exchange rates for a given base currency.
+    Uses a simple cache to reduce API calls.
+    """
+    now = time.time()
