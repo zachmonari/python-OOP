@@ -17,3 +17,9 @@ def get_rates(base_currency: str = "USD"):
     Uses a simple cache to reduce API calls.
     """
     now = time.time()
+    if (
+            _cache["rates"] is not None
+            and _cache["base"] == base_currency
+            and now - _cache["timestamp"] < CACHE_TTL
+    ):
+        return _cache["rates"]
