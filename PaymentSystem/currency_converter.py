@@ -23,3 +23,16 @@ def get_rates(base_currency: str = "USD"):
             and now - _cache["timestamp"] < CACHE_TTL
     ):
         return _cache["rates"]
+    response = requests.get(API_URL.format(base_currency))
+    response.raise_for_status()
+    data = response.json()
+
+    rates = data.get("rates", {})
+    _cache.update(
+        {
+        "rates": rates,
+        "base": base_currency,
+        "timestamp": now
+    })
+
+    return rates
