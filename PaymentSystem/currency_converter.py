@@ -36,3 +36,17 @@ def get_rates(base_currency: str = "USD"):
     })
 
     return rates
+
+def convert_currency(amount: float, from_currency: str, to_currency: str) -> float:
+    """
+    Convert amount from one currency to another.
+    """
+    if from_currency == to_currency:
+        return amount
+
+    rates = get_rates(from_currency)
+
+    if to_currency not in rates:
+        raise ValueError(f"Unsupported currency: {to_currency}")
+
+    return round(amount * rates[to_currency], 2)
