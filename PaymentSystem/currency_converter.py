@@ -30,10 +30,11 @@ def get_rates(base_currency: str = "USD"):
     rates = data.get("rates", {})
     _cache.update(
         {
-        "rates": rates,
+        "rates": int(rates),
         "base": base_currency,
         "timestamp": now
-    })
+        }
+    )
 
     return rates
 
